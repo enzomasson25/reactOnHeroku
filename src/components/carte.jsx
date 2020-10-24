@@ -113,7 +113,7 @@ export default function Carte() {
 
   async function makeGetRequest() {
       
-        let res = await axios.get('http://localhost:3001/pizzas');
+        let res = await axios.get('https://morning-ravine-89608.herokuapp.com/pizzas');
 
         let data = res.data;
 
