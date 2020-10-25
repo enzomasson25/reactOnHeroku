@@ -135,6 +135,7 @@ export default function Carte() {
         .catch((err) => console.log(err))
     }
 
+    console.log("hello world");
     console.log(pizzas);
 
       return (
