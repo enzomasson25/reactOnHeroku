@@ -15,10 +15,12 @@ import { Grid } from "@material-ui/core";
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
-      flexGrow: 1,
     },
     media: {
       height: 140,
+    },
+    root: {
+        flexGrow: 1,
     }
   });
 
