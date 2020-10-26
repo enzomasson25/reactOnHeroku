@@ -19,9 +19,6 @@ const useStyles = makeStyles({
     },
     media: {
       height: 140,
-    },
-    title: {
-        textTransform: "uppercase"
     }
   });
 
@@ -68,7 +65,7 @@ const useStyles = makeStyles({
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            {value.nom}
+                                            {value.nom.toUpperCase()}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             {value.ingredients+", "}
