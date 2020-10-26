@@ -15,98 +15,15 @@ import { Grid } from "@material-ui/core";
 const useStyles = makeStyles({
     root: {
       maxWidth: 345,
+      flexGrow: 1,
     },
     media: {
       height: 140,
     },
-    root: {
-        flexGrow: 1,
-      },
+    title: {
+        textTransform: "uppercase"
+    }
   });
-
-
-/*
-const Carte = ()=>(
-
-        const classes = useStyles();
-        <Card className={classes.root}>
-        <CardActionArea>
-        <CardMedia
-            className={classes.media}
-            image="/assets/img/4fromages.jpg"
-            title="4 fromages"
-        />
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-            4 fromages
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-            Sauce tomate à l'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d'Ambert AOP
-            </Typography>
-        </CardContent>
-        </CardActionArea>
-        <CardActions>
-        <Button size="small" color="primary">
-            Share
-        </Button>
-        <Button size="small" color="primary">
-            Learn More
-        </Button>
-        </CardActions>
-    </Card>
-        
-)
-
-export default Carte;
-
-*/
-
-
-
-
-/*
-
-export default function Carte() {
-    const classes = useStyles();
-
-    
-    //cela ne fonctionne pas err CORS / err 304 server
-    fetch('http://localhost:3001/pizzas') //pas ouf d'apres le prof, axios meilleur
-    .then((response) => {
-        return response.json();
-    })
-    .then((json) => {
-        console.log(json);
-    });
-
-    return (
-        <div>
-            <Card className={classes.root}>
-                <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image="/assets/img/4fromages.jpg"
-                    title="4 fromages"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                    4 fromages
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                    Sauce tomate à l'origan ou crème fraîche légère, mozzarella, fromage de chèvre, emmental et Fourme d'Ambert AOP
-                    </Typography>
-                </CardContent>
-                </CardActionArea>
-            </Card>
-
-            <p>lol</p>
-        </div>
-    )
-
-  
-}
-
-  */
 
 
   //Cours du prof :) 
@@ -147,14 +64,14 @@ export default function Carte() {
                                     <CardMedia
                                         className={classes.media}
                                         image={"/assets/img/"+value.nom+".png"}
-                                        title={value.nom.toUpperCase()}
+                                        title={value.nom}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {value.nom}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            {value.ingredients+" "}
+                                            {value.ingredients+", "}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
