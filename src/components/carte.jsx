@@ -146,7 +146,7 @@ export default function Carte() {
                                 <CardActionArea>
                                     <CardMedia
                                         className={classes.media}
-                                        image={"/assets/img/"+value.nom+".jpg"}
+                                        image={"/assets/img/"+value.nom+".png"}
                                         title={value.nom}
                                     />
                                     <CardContent>
