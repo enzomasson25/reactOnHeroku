@@ -145,16 +145,16 @@ export default function Carte() {
                             <Card className={classes.root}>
                                 <CardActionArea>
                                     <CardMedia
-                                        className={classes.media.toUpperCase()}
+                                        className={classes.media}
                                         image={"/assets/img/"+value.nom+".png"}
-                                        title={value.nom}
+                                        title={value.nom.toUpperCase()}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {value.nom}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            {" "+value.ingredients + " "}
+                                            {value.ingredients+" "}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
