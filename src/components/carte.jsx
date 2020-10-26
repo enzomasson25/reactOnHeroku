@@ -34,6 +34,11 @@ const useStyles = makeStyles({
         return data;
   }
 
+  //fonction qui permet de mettre la premiere lettre d'une string en majuscule
+  function Capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   function Carte() {
 
     const classes = useStyles();
@@ -65,7 +70,7 @@ const useStyles = makeStyles({
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            {value.nom.toUpperCase()}
+                                            {Capitalize(value.nom)}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             {value.ingredients+", "}
