@@ -33,21 +33,25 @@ export default function NouveauClient() {
     console.log(user);
     event.preventDefault();
 
+  
     axios.post('https://morning-ravine-89608.herokuapp.com/user', user)
-      .then((response) => {
+    .then((response) => {
         console.log(response);
-      }, (error) => {
+    }, (error) => {
         console.log(error);
-      });
+    });
+
+
+    
   }
 
   return (
     <div>
         <p>Pour les nouveaux clients :</p>
-        <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <TextField id="outlined-basic" label="Nom" id="nom" variant="outlined" required onChange={e => setNom(e.target.value)}/>
-            <TextField id="outlined-basic" label="Prénom" id="prenom" variant="outlined" required onChange={e => setPrenom(e.target.value)}/>
-            <TextField id="outlined-basic" label="Téléphone" id="telephone" variant="outlined" required onChange={e => setTelephone(e.target.value)}/>
+        <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit} noValidate>
+            <TextField id="outlined-basic" label="Nom" id="nom" variant="outlined" required="true" onChange={e => setNom(e.target.value)}/>
+            <TextField id="outlined-basic" label="Prénom" id="prenom" variant="outlined" required="true" onChange={e => setPrenom(e.target.value)}/>
+            <TextField id="outlined-basic" label="Téléphone" id="telephone" variant="outlined" required="true" onChange={e => setTelephone(e.target.value)}/>
             <Button variant="contained" type="submit" color="primary">
                 Valider
             </Button>
