@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
-import ReactDOM from 'react-dom';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     TextField: {
@@ -21,67 +21,64 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NouveauClient() {
   const classes = useStyles();
-  const [nom, setNom] = React.useState("");
-  const [prenom, setPrenom] = React.useState("");
-  const [telephone, setTelephone] = React.useState("");
+  const [user, setUser] = useState({
+    nom : "",
+    prenom : "",
+    telephone : "",
+  });
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [incomplete, setIncomplete] = useState(false);
 
+  const handleChange = event => {
+    const {name,value} = event.currentTarget
+    setUser({
+      ...user,
+      [name]:value
+    })
+  }
 
-  const alertFormError = (
-    <Alert className={classes.Alert} severity="error">Erreur lors de l'ajout du client !</Alert>
-  );
-  const alertFormIncomplet = (
-    <Alert className={classes.Alert} severity="error">Attention le formulaire n'est pas complet !</Alert>
-  );
-  
   const handleSubmit = (event) => {
-    var user = {
-        nom: nom,
-        prenom: prenom,
-        telephone: telephone
-    }
-    
-    const alertFormSuccess =(
-      <Alert severity="success">{user.nom} {user.prenom} a bien été ajouté !</Alert>
-      );
-    
-    console.log(user);
     event.preventDefault();
 
     if(user.nom == "" || user.prenom == "" || user.telephone == ""){
-      //si le formulaire est mal rempli 
-      ReactDOM.render(alertFormIncomplet, document.getElementById('alert'));
+      setIncomplete(true);
+      setSuccess(false);
+      setError(false);
     }
     else{
+      console.log(user);
       axios.post('https://morning-ravine-89608.herokuapp.com/user', user)
       .then((response) => {
           console.log(response);
-          if(response.status == 200){
-            //si la reponse à la requete est OK 
-            ReactDOM.render(alertFormSuccess, document.getElementById('alert'));
-          }
-          else{
-            ReactDOM.render(alertFormError, document.getElementById('alert'));
-          } 
+          setSuccess(true);
+          setError(false);
+          setIncomplete(false);
+          
       }, (error) => {
           console.log(error);
-          ReactDOM.render(alertFormError, document.getElementById('alert'));
+          setSuccess(false);
+          setError(true);
+          setIncomplete(false);
+          
       });
-    }  
+    }
+    
   }
 
   return (
     <div>
         <p>Pour les nouveaux clients :</p>
         <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit} >
-            <TextField className={classes.TextField} id="outlined-basic" label="Nom" id="nom" variant="outlined" required="required" onChange={e => setNom(e.target.value)}/>
-            <TextField className={classes.TextField} id="outlined-basic" label="Prénom" id="prenom" variant="outlined" required="required" onChange={e => setPrenom(e.target.value)}/>
-            <TextField className={classes.TextField} id="outlined-basic" label="Téléphone" id="telephone" variant="outlined" required="required" onChange={e => setTelephone(e.target.value)}/>
+            <TextField className={classes.TextField} id="outlined-basic" label="Nom" name="nom" variant="outlined" required onChange={handleChange}/>
+            <TextField className={classes.TextField} id="outlined-basic1" label="Prénom" name="prenom" variant="outlined" required onChange={handleChange}/>
+            <TextField className={classes.TextField} id="outlined-basic2" label="Téléphone" name="telephone" variant="outlined" required onChange={handleChange}/>
             <Button className={classes.Button} variant="contained" type="submit" color="primary">
                 Valider
             </Button>
-            <div id="alert">
-
-            </div>
+            {success?<Alert severity="success">{user.nom} {user.prenom} a bien été ajouté !</Alert>:null}
+            {incomplete?<Alert className={classes.Alert} severity="error">Attention le formulaire n'est pas complet !</Alert>:null}
+            {error?<Alert className={classes.Alert} severity="error">Erreur lors de l'ajout du client !</Alert>:null}
         </form>
     </div> 
   );
