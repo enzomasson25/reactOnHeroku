@@ -27,7 +27,7 @@ export default function NouveauClient() {
     telephone : "",
   });
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState("");
   const [incomplete, setIncomplete] = useState(false);
 
   const handleChange = event => {
@@ -43,7 +43,7 @@ export default function NouveauClient() {
 
     if(user.nom == "" || user.prenom == "" || user.telephone == ""){
       setIncomplete(true);
-      setSuccess(false);
+      setSuccess("");
       setError(false);
     }
     else{
@@ -51,13 +51,13 @@ export default function NouveauClient() {
       axios.post('https://morning-ravine-89608.herokuapp.com/user', user)
       .then((response) => {
           console.log(response);
-          setSuccess(true);
+          setSuccess(`${user.nom} ${user.prenom}`);
           setError(false);
           setIncomplete(false);
           
       }, (error) => {
           console.log(error);
-          setSuccess(false);
+          setSuccess("");
           setError(true);
           setIncomplete(false);
           
@@ -76,7 +76,7 @@ export default function NouveauClient() {
             <Button className={classes.Button} variant="contained" type="submit" color="primary">
                 Valider
             </Button>
-            {success?<Alert severity="success">{user.nom} {user.prenom} a bien été ajouté !</Alert>:null}
+            {success?<Alert severity="success">{success} a bien été ajouté !</Alert>:null}
             {incomplete?<Alert className={classes.Alert} severity="error">Attention le formulaire n'est pas complet !</Alert>:null}
             {error?<Alert className={classes.Alert} severity="error">Erreur lors de l'ajout du client !</Alert>:null}
         </form>
