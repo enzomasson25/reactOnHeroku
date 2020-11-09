@@ -75,7 +75,7 @@ const useStyles = makeStyles({
                                             {Capitalize(value.nom)}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            {value.ingredients}
+                                            {value.ingredients+", "}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
