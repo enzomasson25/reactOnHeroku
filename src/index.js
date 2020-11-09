@@ -2,13 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Carte from './components/carte';
 import FormulaireCommande from './components/formulaireCommande';
+import NouveauClient from './components/nouveauClient';
 import VisualisationCommande from './components/visualisationCommande';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Carte />
   </React.StrictMode>,
   document.getElementById('carteApp')
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <NouveauClient />
+  </React.StrictMode>,
+  document.getElementById('nouveauClientApp')
 );
 
 ReactDOM.render(
